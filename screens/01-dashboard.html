@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>売上・進捗ダッシュボード — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">T</span>
+      トライスパイド業務OS
+    </div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html" class="active"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span>ダッシュボード</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">売上・進捗ダッシュボード</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">今月売上</div>
+          <div class="kpi-value">¥18.4M</div>
+          <div class="kpi-change up">
+            <i data-lucide="trending-up" style="width:14px;height:14px"></i>
+            +12.3% 前月比
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">受注件数</div>
+          <div class="kpi-value">23<span style="font-size:16px;font-weight:400;color:var(--text-muted)">件</span></div>
+          <div class="kpi-change up">
+            <i data-lucide="trending-up" style="width:14px;height:14px"></i>
+            +4件 前月比
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">平均単価</div>
+          <div class="kpi-value">¥800K</div>
+          <div class="kpi-change down">
+            <i data-lucide="trending-down" style="width:14px;height:14px"></i>
+            -3.1% 前月比
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">継続率</div>
+          <div class="kpi-value">94.2<span style="font-size:16px;font-weight:400;color:var(--text-muted)">%</span></div>
+          <div class="kpi-change up">
+            <i data-lucide="trending-up" style="width:14px;height:14px"></i>
+            +1.8% 前月比
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>週次売上推移（直近12週）</h3>
+          <canvas id="weeklyChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>プロダクト別売上</h3>
+          <canvas id="productChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:16px;">
+        <!-- Progress Table -->
+        <div class="card">
+          <h3 style="font-size:14px;font-weight:600;margin-bottom:14px;">個人別進捗</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>担当者</th>
+                <th>目標</th>
+                <th>実績</th>
+                <th>達成率</th>
+                <th>進捗</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="flex items-center gap-8"><div class="avatar" style="width:24px;height:24px;font-size:10px;">田</div>田中 裕也</div></td>
+                <td>¥5.0M</td>
+                <td>¥4.8M</td>
+                <td style="font-weight:600;color:var(--accent);">96%</td>
+                <td style="width:120px"><div class="progress"><div class="progress-fill" style="width:96%"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="flex items-center gap-8"><div class="avatar" style="width:24px;height:24px;font-size:10px;background:#F0E6F6;color:var(--purple);">佐</div>佐藤 美咲</div></td>
+                <td>¥4.5M</td>
+                <td>¥5.1M</td>
+                <td style="font-weight:600;color:var(--accent);">113%</td>
+                <td style="width:120px"><div class="progress"><div class="progress-fill" style="width:100%;background:var(--green)"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="flex items-center gap-8"><div class="avatar" style="width:24px;height:24px;font-size:10px;background:#D3E5EF;color:var(--blue);">鈴</div>鈴木 健太</div></td>
+                <td>¥4.0M</td>
+                <td>¥3.2M</td>
+                <td style="font-weight:600;color:var(--orange);">80%</td>
+                <td style="width:120px"><div class="progress"><div class="progress-fill" style="width:80%;background:var(--orange)"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="flex items-center gap-8"><div class="avatar" style="width:24px;height:24px;font-size:10px;background:#FDF0D5;color:#D9730D;">山</div>山田 拓海</div></td>
+                <td>¥3.5M</td>
+                <td>¥3.5M</td>
+                <td style="font-weight:600;color:var(--accent);">100%</td>
+                <td style="width:120px"><div class="progress"><div class="progress-fill" style="width:100%"></div></div></td>
+              </tr>
+              <tr>
+                <td><div class="flex items-center gap-8"><div class="avatar" style="width:24px;height:24px;font-size:10px;background:#FFE2DD;color:var(--red);">高</div>高橋 由紀</div></td>
+                <td>¥3.0M</td>
+                <td>¥1.8M</td>
+                <td style="font-weight:600;color:var(--red);">60%</td>
+                <td style="width:120px"><div class="progress"><div class="progress-fill" style="width:60%;background:var(--red)"></div></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- AI Summary -->
+        <div class="ai-panel" style="align-self:start;">
+          <div class="ai-panel-header">
+            <i data-lucide="sparkles"></i>
+            今週の注目ポイント
+          </div>
+          <p style="margin-bottom:10px;">
+            <strong>1.</strong> 佐藤さんがSIRCLE案件3件を連続受注し、個人目標を113%で達成。グランヴィラ東京の大型案件（¥1.2M）が牽引。
+          </p>
+          <p style="margin-bottom:10px;">
+            <strong>2.</strong> FUWEL単価が先月比-8%。フルパッケージからシンプルプランへの切替が増加傾向。次週の提案でアップセル施策を検討推奨。
+          </p>
+          <p>
+            <strong>3.</strong> 高橋さんの神戸エリア3件が「商談中」で停滞（平均21日）。フォローメールの自動送信をおすすめします。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Fab -->
+    <button class="ai-fab" title="AIアシスタント">
+      <i data-lucide="bot"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const chartFont = { family: "'Inter', 'Noto Sans JP', sans-serif" };
+  Chart.defaults.font = chartFont;
+  Chart.defaults.color = '#6B6B6B';
+
+  // Weekly Sales
+  new Chart(document.getElementById('weeklyChart'), {
+    type: 'line',
+    data: {
+      labels: ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
+      datasets: [{
+        label: '売上（万円）',
+        data: [320,380,290,410,360,420,480,390,450,510,470,530],
+        borderColor: '#0F7B6C',
+        backgroundColor: 'rgba(15,123,108,0.08)',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 3,
+        pointBackgroundColor: '#0F7B6C',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: '#EBEBEA' }, border: { display: false } },
+        x: { grid: { display: false }, border: { display: false } }
+      }
+    }
+  });
+
+  // Product Sales
+  new Chart(document.getElementById('productChart'), {
+    type: 'bar',
+    data: {
+      labels: ['TASCUT', 'FUWEL', 'SIRCLE'],
+      datasets: [{
+        label: '売上（万円）',
+        data: [620, 840, 380],
+        backgroundColor: ['#0F7B6C', '#2F80ED', '#9B51E0'],
+        borderRadius: 6,
+        maxBarThickness: 64
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: '#EBEBEA' }, border: { display: false } },
+        x: { grid: { display: false }, border: { display: false } }
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>トライスパイド業務OS — UIモックアップ</title>
+  <link rel="stylesheet" href="css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { background: var(--bg); }
+    .landing { max-width: 960px; margin: 0 auto; padding: 64px 32px; }
+    .landing-header { text-align: center; margin-bottom: 48px; }
+    .landing-header .brand-icon-lg {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: var(--accent); color: var(--white);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 700; margin-bottom: 16px;
+    }
+    .landing-header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .landing-header p { color: var(--text-secondary); font-size: 15px; }
+    .screen-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    .screen-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex; gap: 16px; align-items: flex-start;
+      text-decoration: none; color: inherit;
+    }
+    .screen-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .screen-num {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--accent-light); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; flex-shrink: 0;
+    }
+    .screen-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .screen-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .screen-card .layer-tag {
+      display: inline-block; margin-top: 6px;
+      font-size: 11px; padding: 2px 8px; border-radius: 4px;
+      background: var(--border); color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="landing">
+    <div class="landing-header">
+      <div class="brand-icon-lg">T</div>
+      <h1>トライスパイド業務OS</h1>
+      <p>トライスパイド様向け 業務OS構築提案 — UIモックアップ（全7画面）</p>
+    </div>
+
+    <div class="screen-grid">
+      <a href="screens/01-dashboard.html" class="screen-card">
+        <div class="screen-num">1</div>
+        <div>
+          <h3>経営ダッシュボード</h3>
+          <p>売上KPI・週次推移・プロダクト別売上・個人別進捗・AI自動サマリー</p>
+          <span class="layer-tag">レイヤー3: 管理の高度化</span>
+        </div>
+      </a>
+
+      <a href="screens/02-customer-db.html" class="screen-card">
+        <div class="screen-num">2</div>
+        <div>
+          <h3>顧客データベース</h3>
+          <p>式場一覧・ステータス管理・AI検索・レコードプレビュー・関連案件サジェスト</p>
+          <span class="layer-tag">レイヤー0: 情報基盤（SSOT）</span>
+        </div>
+      </a>
+
+      <a href="screens/03-proposal.html" class="screen-card">
+        <div class="screen-num">3</div>
+        <div>
+          <h3>提案書ドラフト自動生成</h3>
+          <p>AIチャットで指示→類似案件参照→提案書プレビュー→PDF化・メール送付</p>
+          <span class="layer-tag">レイヤー1: 業務生成の自動化</span>
+        </div>
+      </a>
+
+      <a href="screens/04-invoices.html" class="screen-card">
+        <div class="screen-num">4</div>
+        <div>
+          <h3>帳票自動化（見積・申込・請求）</h3>
+          <p>帳票パイプライン・ステータス管理・送付方式分岐・入金確認</p>
+          <span class="layer-tag">レイヤー1: 業務生成の自動化</span>
+        </div>
+      </a>
+
+      <a href="screens/05-ai-agents.html" class="screen-card">
+        <div class="screen-num">5</div>
+        <div>
+          <h3>AIエージェントコマンドセンター</h3>
+          <p>6種のエージェント管理・実行状況・成功率・アクティビティログ</p>
+          <span class="layer-tag">レイヤー1〜2: 自動化＋連携</span>
+        </div>
+      </a>
+
+      <a href="screens/06-knowledge.html" class="screen-card">
+        <div class="screen-num">6</div>
+        <div>
+          <h3>ナレッジDB＆過去案件検索</h3>
+          <p>横断検索・カテゴリ分類・出典タグ・AI回答パネル</p>
+          <span class="layer-tag">レイヤー0: 脱・属人化</span>
+        </div>
+      </a>
+
+      <a href="screens/07-requests.html" class="screen-card">
+        <div class="screen-num">7</div>
+        <div>
+          <h3>社内制作依頼フロー</h3>
+          <p>カンバン管理・プロダクト別タグ・新規依頼モーダル・AI下書き</p>
+          <span class="layer-tag">レイヤー1: PM効率化</span>
+        </div>
+      </a>
+    </div>
+  </div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

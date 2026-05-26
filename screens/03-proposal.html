@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>提案書ドラフト自動生成 — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-icon">T</span>トライスパイド業務OS</div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html" class="active"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <span>提案</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">提案書ドラフト自動生成</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <!-- 2-Column: Chat + Preview -->
+    <div style="display:flex;flex:1;overflow:hidden;">
+      <!-- Left: AI Chat -->
+      <div style="width:400px;min-width:400px;border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--white);">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
+          <i data-lucide="bot" style="width:16px;height:16px;color:var(--accent);"></i>
+          AI提案アシスタント
+        </div>
+        <div class="chat-messages" style="flex:1;overflow-y:auto;">
+          <div class="chat-msg ai">
+            こんにちは。提案書を作成します。顧客名とプロダクトを教えてください。
+          </div>
+          <div class="chat-msg user">
+            ホテルクレスト神戸向けにSIRCLE中心の提案を作成してください。年間婚礼120件規模で、現在は他社CMSを利用中です。
+          </div>
+          <div class="chat-msg ai">
+            <div style="margin-bottom:8px;">かしこまりました。以下の情報を元に提案書を生成します。</div>
+            <div style="background:rgba(15,123,108,0.08);padding:8px 10px;border-radius:6px;font-size:12.5px;margin-bottom:8px;">
+              <strong>参照した類似案件（3件）:</strong><br>
+              ・グランヴィラ東京（SIRCLE導入、受注¥1.2M）<br>
+              ・アニヴェルセル表参道（フル導入、受注¥2.4M）<br>
+              ・ノートルダム北九州（SIRCLE+FUWEL、受注¥980K）
+            </div>
+            骨子を生成中です。右側のプレビューをご確認ください。
+          </div>
+          <div class="chat-msg user">
+            導入後の集客改善事例もいれてほしい
+          </div>
+          <div class="chat-msg ai">
+            了解しました。「導入効果」セクションに集客改善データを追加しました。グランヴィラ東京での実績（HP経由問い合わせ+42%）を引用しています。
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input class="chat-input" type="text" placeholder="指示を入力…（例：料金プランを2パターンにして）">
+          <button class="btn btn-primary" style="padding:8px 12px;"><i data-lucide="send" style="width:16px;height:16px;"></i></button>
+        </div>
+      </div>
+
+      <!-- Right: Proposal Preview -->
+      <div style="flex:1;overflow-y:auto;padding:24px 32px;background:var(--bg);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="font-size:12px;color:var(--text-muted);">プレビュー — 自動更新</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-secondary"><i data-lucide="file-down"></i>PDF化</button>
+            <button class="btn btn-secondary"><i data-lucide="mail"></i>メール下書きへ</button>
+            <button class="btn btn-primary"><i data-lucide="save"></i>Notionへ保存</button>
+          </div>
+        </div>
+
+        <div class="proposal-preview">
+          <div style="text-align:center;margin-bottom:32px;">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">ご提案書</div>
+            <h1 style="margin-bottom:8px;">ホテルクレスト神戸 様<br>SIRCLE導入のご提案</h1>
+            <div style="font-size:13px;color:var(--text-secondary);">2026年5月26日 ／ 株式会社トライスパイド</div>
+          </div>
+
+          <h2>1. 貴社の現状と課題</h2>
+          <p>ホテルクレスト神戸様は年間約120件の婚礼を施行されており、神戸エリアにおけるトップクラスの実績をお持ちです。一方で、以下の課題が確認されています。</p>
+          <ul>
+            <li><strong>HP経由の問い合わせ数が伸び悩み</strong> — 現行CMSでは更新の柔軟性が低く、フェア情報やプラン更新に時間がかかっている</li>
+            <li><strong>他媒体との情報整合</strong> — ゼクシィ・マイナビウェディング等の掲載情報との不一致が発生</li>
+            <li><strong>データ活用の遅れ</strong> — 問い合わせ経路・成約率のリアルタイム把握ができていない</li>
+          </ul>
+
+          <h2>2. ご提案内容 — SIRCLEでできること</h2>
+          <h3>自社HP集客の最大化</h3>
+          <p>SIRCLEは婚礼施設に特化したCMS+マーケティングプラットフォームです。フェア・プラン・フォト情報をワンオペで更新でき、更新作業時間を平均60%削減します。</p>
+          <h3>データドリブンな集客改善</h3>
+          <p>問い合わせ経路分析、ページ閲覧ヒートマップ、コンバージョン追跡を標準搭載。毎月の改善アクションをデータに基づいて実行できます。</p>
+
+          <h2>3. 導入効果（類似施設の実績）</h2>
+          <table style="width:100%;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:12px 0;">
+            <thead>
+              <tr style="background:var(--bg);">
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">施設名</th>
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">HP問い合わせ</th>
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">成約率</th>
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">更新工数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">グランヴィラ東京</td>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;">+42%</td>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;">+18%</td>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--accent);font-weight:600;">-65%</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-size:13px;">アニヴェルセル表参道</td>
+                <td style="padding:10px 14px;font-size:13px;color:var(--accent);font-weight:600;">+38%</td>
+                <td style="padding:10px 14px;font-size:13px;color:var(--accent);font-weight:600;">+22%</td>
+                <td style="padding:10px 14px;font-size:13px;color:var(--accent);font-weight:600;">-58%</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>4. 料金プラン</h2>
+          <table style="width:100%;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:12px 0;">
+            <thead>
+              <tr style="background:var(--bg);">
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">項目</th>
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">内容</th>
+                <th style="padding:10px 14px;text-align:right;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">金額（税別）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">初期導入費</td>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">デザイン制作・データ移行・初期設定</td>
+                <td style="padding:10px 14px;font-size:13px;text-align:right;border-bottom:1px solid var(--border);">¥500,000</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">月額利用料</td>
+                <td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">SIRCLE スタンダードプラン</td>
+                <td style="padding:10px 14px;font-size:13px;text-align:right;border-bottom:1px solid var(--border);">¥80,000/月</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;font-size:13px;">年間合計</td>
+                <td style="padding:10px 14px;font-size:13px;">初期費 + 月額×12</td>
+                <td style="padding:10px 14px;font-size:13px;text-align:right;font-weight:700;">¥1,460,000</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>5. 導入スケジュール</h2>
+          <table style="width:100%;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:12px 0;">
+            <thead>
+              <tr style="background:var(--bg);">
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">期間</th>
+                <th style="padding:10px 14px;text-align:left;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--border);">内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">1〜2週目</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">キックオフ・要件確認・デザインヒアリング</td></tr>
+              <tr><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">3〜6週目</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">デザイン制作・コンテンツ移行</td></tr>
+              <tr><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">7〜8週目</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);">テスト・レビュー・修正</td></tr>
+              <tr><td style="padding:10px 14px;font-size:13px;">9週目</td><td style="padding:10px 14px;font-size:13px;">本番公開・運用開始</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <button class="ai-fab" title="AIアシスタント"><i data-lucide="bot"></i></button>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>顧客データベース — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-icon">T</span>トライスパイド業務OS</div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html" class="active"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <span>顧客DB</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">顧客データベース</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <div class="content content-wide" style="display:flex;flex-direction:column;height:calc(100vh - var(--header-h));">
+      <!-- Toolbar -->
+      <div style="padding:16px 24px 0;">
+        <!-- Tabs -->
+        <div class="tabs" style="margin-bottom:12px;">
+          <button class="tab active">テーブル</button>
+          <button class="tab">ボード</button>
+          <button class="tab">カレンダー</button>
+          <button class="tab">マップ</button>
+        </div>
+
+        <!-- Filter + Search -->
+        <div style="display:flex;gap:12px;margin-bottom:12px;">
+          <div class="search-bar" style="flex:1;max-width:420px;">
+            <i data-lucide="sparkles"></i>
+            <input type="text" placeholder="自然言語で顧客を探す（例：神戸エリアで商談中のFUWEL案件）">
+          </div>
+          <div class="filter-bar" style="margin-bottom:0;">
+            <button class="filter-chip"><i data-lucide="filter"></i>フィルタ</button>
+            <button class="filter-chip"><i data-lucide="arrow-up-down"></i>並び替え</button>
+            <button class="filter-chip">ステータス: すべて</button>
+            <button class="filter-chip">エリア: すべて</button>
+          </div>
+          <button class="btn btn-primary" style="margin-left:auto;"><i data-lucide="plus"></i>新規顧客</button>
+        </div>
+      </div>
+
+      <!-- Table + Preview -->
+      <div style="display:flex;flex:1;overflow:hidden;">
+        <!-- Table -->
+        <div style="flex:1;overflow:auto;padding:0 24px 24px;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>式場名</th>
+                <th>エリア</th>
+                <th>ステータス</th>
+                <th>担当</th>
+                <th>最終接触日</th>
+                <th>次回フォロー</th>
+                <th>導入プロダクト</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="selected">
+                <td style="font-weight:500;">グランヴィラ東京</td>
+                <td>東京</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>佐藤 美咲</td>
+                <td>2026/05/22</td>
+                <td>2026/06/05</td>
+                <td><span class="tag tag-green" style="margin-right:4px;">SIRCLE</span><span class="tag tag-blue">FUWEL</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ホテルクレスト神戸</td>
+                <td>神戸</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>高橋 由紀</td>
+                <td>2026/05/18</td>
+                <td>2026/05/28</td>
+                <td><span class="tag tag-green">SIRCLE</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ブライダルハウス福岡</td>
+                <td>福岡</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>田中 裕也</td>
+                <td>2026/05/20</td>
+                <td>2026/06/15</td>
+                <td><span class="tag tag-blue" style="margin-right:4px;">FUWEL</span><span class="tag tag-yellow">TASCUT</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">迎賓館アルテ</td>
+                <td>横浜</td>
+                <td><span class="tag tag-new">新規</span></td>
+                <td>鈴木 健太</td>
+                <td>2026/05/24</td>
+                <td>2026/05/30</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ガーデンテラス横浜</td>
+                <td>横浜</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>山田 拓海</td>
+                <td>2026/05/15</td>
+                <td>2026/05/29</td>
+                <td><span class="tag tag-yellow">TASCUT</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ザ・リッツ名古屋</td>
+                <td>名古屋</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>佐藤 美咲</td>
+                <td>2026/05/10</td>
+                <td>2026/06/10</td>
+                <td><span class="tag tag-green" style="margin-right:4px;">SIRCLE</span><span class="tag tag-blue">FUWEL</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">セレモニーホール大阪</td>
+                <td>大阪</td>
+                <td><span class="tag tag-lost">失注</span></td>
+                <td>高橋 由紀</td>
+                <td>2026/04/28</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">パレスホテル札幌</td>
+                <td>札幌</td>
+                <td><span class="tag tag-new">新規</span></td>
+                <td>鈴木 健太</td>
+                <td>2026/05/23</td>
+                <td>2026/06/02</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ベルクラシック広島</td>
+                <td>広島</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>田中 裕也</td>
+                <td>2026/05/19</td>
+                <td>2026/05/31</td>
+                <td><span class="tag tag-blue">FUWEL</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">アニヴェルセル表参道</td>
+                <td>東京</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>佐藤 美咲</td>
+                <td>2026/05/12</td>
+                <td>2026/06/12</td>
+                <td><span class="tag tag-green" style="margin-right:4px;">SIRCLE</span><span class="tag tag-blue">FUWEL</span><span class="tag tag-yellow" style="margin-left:4px;">TASCUT</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">シャトー・ド・フェリシア</td>
+                <td>京都</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>山田 拓海</td>
+                <td>2026/05/21</td>
+                <td>2026/06/01</td>
+                <td><span class="tag tag-yellow">TASCUT</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ロイヤルガーデン仙台</td>
+                <td>仙台</td>
+                <td><span class="tag tag-new">新規</span></td>
+                <td>田中 裕也</td>
+                <td>2026/05/25</td>
+                <td>2026/06/03</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">マリエール高崎</td>
+                <td>高崎</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>鈴木 健太</td>
+                <td>2026/05/08</td>
+                <td>2026/06/08</td>
+                <td><span class="tag tag-blue">FUWEL</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ウェディングヒルズ沖縄</td>
+                <td>沖縄</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>高橋 由紀</td>
+                <td>2026/05/17</td>
+                <td>2026/05/27</td>
+                <td><span class="tag tag-green">SIRCLE</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">グレイスヴィラ金沢</td>
+                <td>金沢</td>
+                <td><span class="tag tag-lost">失注</span></td>
+                <td>山田 拓海</td>
+                <td>2026/04/20</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ノートルダム北九州</td>
+                <td>北九州</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>田中 裕也</td>
+                <td>2026/05/14</td>
+                <td>2026/06/14</td>
+                <td><span class="tag tag-yellow" style="margin-right:4px;">TASCUT</span><span class="tag tag-blue">FUWEL</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">ハイアットリージェンシー大阪</td>
+                <td>大阪</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>佐藤 美咲</td>
+                <td>2026/05/23</td>
+                <td>2026/06/04</td>
+                <td><span class="tag tag-green">SIRCLE</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">リビエラ逗子マリーナ</td>
+                <td>逗子</td>
+                <td><span class="tag tag-new">新規</span></td>
+                <td>鈴木 健太</td>
+                <td>2026/05/26</td>
+                <td>2026/06/06</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">エルセルモ熊本</td>
+                <td>熊本</td>
+                <td><span class="tag tag-won">受注</span></td>
+                <td>高橋 由紀</td>
+                <td>2026/05/06</td>
+                <td>2026/06/06</td>
+                <td><span class="tag tag-blue">FUWEL</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight:500;">アルカンシエル南青山</td>
+                <td>東京</td>
+                <td><span class="tag tag-active">商談中</span></td>
+                <td>山田 拓海</td>
+                <td>2026/05/22</td>
+                <td>2026/06/02</td>
+                <td><span class="tag tag-yellow" style="margin-right:4px;">TASCUT</span><span class="tag tag-green">SIRCLE</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span class="tag tag-won">受注</span>
+          </div>
+          <h3 style="font-size:17px;font-weight:700;margin-bottom:2px;">グランヴィラ東京</h3>
+          <p class="text-sm text-muted mb-16">東京都港区南青山 3-12-8</p>
+
+          <div class="detail-row"><span class="detail-label">担当</span><span>佐藤 美咲</span></div>
+          <div class="detail-row"><span class="detail-label">エリア</span><span>東京</span></div>
+          <div class="detail-row"><span class="detail-label">導入プロダクト</span><span>SIRCLE, FUWEL</span></div>
+          <div class="detail-row"><span class="detail-label">月額</span><span>¥380,000</span></div>
+          <div class="detail-row"><span class="detail-label">契約開始</span><span>2025/10/01</span></div>
+          <div class="detail-row"><span class="detail-label">最終接触日</span><span>2026/05/22</span></div>
+          <div class="detail-row"><span class="detail-label">次回フォロー</span><span>2026/06/05</span></div>
+
+          <!-- AI Suggestion -->
+          <div class="ai-panel" style="margin-top:20px;">
+            <div class="ai-panel-header">
+              <i data-lucide="sparkles"></i>
+              AIサジェスト
+            </div>
+            <p style="font-size:12.5px;">
+              グランヴィラ東京は婚礼件数が年間120件。同規模の<strong>アニヴェルセル表参道</strong>ではTASCUT導入で予約管理コストを30%削減しています。TASCUT追加提案がおすすめです。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="ai-fab" title="AIアシスタント"><i data-lucide="bot"></i></button>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

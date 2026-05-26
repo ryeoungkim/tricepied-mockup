@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>社内制作依頼フロー — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-icon">T</span>トライスパイド業務OS</div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html" class="active"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <span>制作依頼</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">社内制作依頼フロー</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Toolbar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <div class="filter-bar" style="margin-bottom:0;">
+          <button class="filter-chip"><i data-lucide="filter"></i>フィルタ</button>
+          <button class="filter-chip">プロダクト: すべて</button>
+          <button class="filter-chip">担当: すべて</button>
+          <button class="filter-chip">優先度: すべて</button>
+        </div>
+        <button class="btn btn-primary" onclick="document.getElementById('modal').style.display='flex'"><i data-lucide="plus"></i>新規依頼を作成</button>
+      </div>
+
+      <!-- Kanban -->
+      <div class="kanban">
+        <!-- Column 1: 依頼受付 -->
+        <div class="kanban-col">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">依頼受付</span>
+            <span class="kanban-col-count">4</span>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">リビエラ逗子マリーナ — FUWEL新規制作</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>鈴木</span>
+              <span><i data-lucide="calendar"></i>06/10</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-red" style="font-size:10px;padding:1px 6px;">高</span></div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">パレスホテル札幌 — SIRCLE初期設定</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>鈴木</span>
+              <span><i data-lucide="calendar"></i>06/15</span>
+              <span class="tag tag-green" style="font-size:10px;padding:1px 6px;">SIRCLE</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">中</span></div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">アルカンシエル南青山 — TASCUT設定</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>山田</span>
+              <span><i data-lucide="calendar"></i>06/12</span>
+              <span class="tag tag-blue" style="font-size:10px;padding:1px 6px;">TASCUT</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">中</span></div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">ロイヤルガーデン仙台 — 提出用フォルダ作成</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>田中</span>
+              <span><i data-lucide="calendar"></i>06/08</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-gray" style="font-size:10px;padding:1px 6px;">低</span></div>
+          </div>
+        </div>
+
+        <!-- Column 2: 制作中 -->
+        <div class="kanban-col">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">制作中</span>
+            <span class="kanban-col-count">3</span>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">ガーデンテラス横浜 — FUWEL修正（トップページ）</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>山田</span>
+              <span><i data-lucide="calendar"></i>05/30</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:8px;">
+              <div class="progress" style="height:4px;"><div class="progress-fill" style="width:60%;"></div></div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:3px;">60% 完了</div>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">シャトー・ド・フェリシア — 動的指示書作成</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>山田</span>
+              <span><i data-lucide="calendar"></i>06/05</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:8px;">
+              <div class="progress" style="height:4px;"><div class="progress-fill" style="width:30%;"></div></div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:3px;">30% 完了</div>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">ベルクラシック広島 — FUWEL フェアページ追加</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>田中</span>
+              <span><i data-lucide="calendar"></i>06/01</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-red" style="font-size:10px;padding:1px 6px;">高</span></div>
+            <div style="margin-top:8px;">
+              <div class="progress" style="height:4px;"><div class="progress-fill" style="width:80%;background:var(--accent);"></div></div>
+              <div style="font-size:10px;color:var(--text-muted);margin-top:3px;">80% 完了</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: レビュー -->
+        <div class="kanban-col">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">レビュー</span>
+            <span class="kanban-col-count">3</span>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">ノートルダム北九州 — TASCUTフェア枠最適化</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>田中</span>
+              <span><i data-lucide="calendar"></i>05/28</span>
+              <span class="tag tag-blue" style="font-size:10px;padding:1px 6px;">TASCUT</span>
+            </div>
+            <div style="margin-top:6px;display:flex;gap:4px;">
+              <span class="tag tag-new" style="font-size:10px;padding:1px 6px;">レビュー待ち</span>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">ブライダルハウス福岡 — FUWEL プラン修正</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>田中</span>
+              <span><i data-lucide="calendar"></i>05/27</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:6px;">
+              <span class="tag tag-active" style="font-size:10px;padding:1px 6px;">修正依頼あり</span>
+            </div>
+          </div>
+          <div class="kanban-card">
+            <div class="kanban-card-title">ウェディングヒルズ沖縄 — SIRCLE LP制作</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>高橋</span>
+              <span><i data-lucide="calendar"></i>05/29</span>
+              <span class="tag tag-green" style="font-size:10px;padding:1px 6px;">SIRCLE</span>
+            </div>
+            <div style="margin-top:6px;">
+              <span class="tag tag-new" style="font-size:10px;padding:1px 6px;">レビュー待ち</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 4: 完了 -->
+        <div class="kanban-col">
+          <div class="kanban-col-header">
+            <span class="kanban-col-title">完了</span>
+            <span class="kanban-col-count">3</span>
+          </div>
+          <div class="kanban-card" style="opacity:0.7;">
+            <div class="kanban-card-title">グランヴィラ東京 — SIRCLE更新反映</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>佐藤</span>
+              <span><i data-lucide="calendar"></i>05/20</span>
+              <span class="tag tag-green" style="font-size:10px;padding:1px 6px;">SIRCLE</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-green" style="font-size:10px;padding:1px 6px;">本番UP済</span></div>
+          </div>
+          <div class="kanban-card" style="opacity:0.7;">
+            <div class="kanban-card-title">ザ・リッツ名古屋 — FUWELフォトギャラリー</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>佐藤</span>
+              <span><i data-lucide="calendar"></i>05/18</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-green" style="font-size:10px;padding:1px 6px;">本番UP済</span></div>
+          </div>
+          <div class="kanban-card" style="opacity:0.7;">
+            <div class="kanban-card-title">エルセルモ熊本 — FUWEL初期設定</div>
+            <div class="kanban-card-meta">
+              <span><i data-lucide="user"></i>高橋</span>
+              <span><i data-lucide="calendar"></i>05/15</span>
+              <span class="tag tag-yellow" style="font-size:10px;padding:1px 6px;">FUWEL</span>
+            </div>
+            <div style="margin-top:6px;"><span class="tag tag-green" style="font-size:10px;padding:1px 6px;">本番UP済</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="ai-fab" title="AIアシスタント"><i data-lucide="bot"></i></button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal" style="display:none;">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>新規制作依頼</h2>
+      <button onclick="document.getElementById('modal').style.display='none'" style="color:var(--text-muted);"><i data-lucide="x" style="width:18px;height:18px;"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">会場名 *</label>
+        <select class="form-select">
+          <option>— 顧客DBから選択 —</option>
+          <option>グランヴィラ東京</option>
+          <option>ホテルクレスト神戸</option>
+          <option>ブライダルハウス福岡</option>
+          <option>迎賓館アルテ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">プロダクト *</label>
+        <select class="form-select">
+          <option>— 選択 —</option>
+          <option>FUWEL</option>
+          <option>SIRCLE</option>
+          <option>TASCUT</option>
+          <option>FUWEL + SIRCLE</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">依頼内容 *</label>
+        <textarea class="form-input" rows="4" placeholder="依頼の概要を記載してください（例：トップページのメインビジュアル差し替え + フェアページ追加）"></textarea>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group">
+          <label class="form-label">納期 *</label>
+          <input type="date" class="form-input" value="2026-06-15">
+        </div>
+        <div class="form-group">
+          <label class="form-label">優先度</label>
+          <select class="form-select">
+            <option>中</option>
+            <option>高</option>
+            <option>低</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:0;">
+        <button class="btn btn-secondary w-full" style="justify-content:center;background:var(--accent-light);color:var(--accent);border-color:transparent;">
+          <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+          AIで依頼内容の下書きを生成
+        </button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="document.getElementById('modal').style.display='none'">キャンセル</button>
+      <button class="btn btn-primary"><i data-lucide="plus"></i>依頼を作成</button>
+    </div>
+  </div>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

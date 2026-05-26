@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>ナレッジDB＆過去案件検索 — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-icon">T</span>トライスパイド業務OS</div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html" class="active"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <span>ナレッジ</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">ナレッジDB＆過去案件検索</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <div class="content content-wide" style="display:flex;flex-direction:column;height:calc(100vh - var(--header-h));">
+      <!-- Big Search Bar -->
+      <div style="padding:32px 48px 24px;text-align:center;">
+        <h2 style="font-size:20px;font-weight:700;margin-bottom:16px;">過去の提案・打合せ・Chatworkを横断検索</h2>
+        <div class="search-bar" style="max-width:680px;margin:0 auto;padding:14px 18px;font-size:15px;">
+          <i data-lucide="sparkles" style="color:var(--accent);"></i>
+          <input type="text" placeholder="キーワードや質問を入力（例：SIRCLE導入で集客が伸びた事例）" value="ホテル 年間契約 見積 タイミング">
+          <button class="btn btn-primary" style="padding:6px 14px;"><i data-lucide="search" style="width:15px;height:15px;"></i>検索</button>
+        </div>
+      </div>
+
+      <!-- 3-Column Layout -->
+      <div style="display:flex;flex:1;overflow:hidden;padding:0 24px 24px;">
+        <!-- Left: Categories -->
+        <div style="width:180px;min-width:180px;padding-right:16px;">
+          <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;letter-spacing:0.04em;">カテゴリ</div>
+          <ul class="category-list">
+            <li><a href="#" class="active"><i data-lucide="layers"></i>すべて<span class="category-count">248</span></a></li>
+            <li><a href="#"><i data-lucide="briefcase"></i>営業資料<span class="category-count">86</span></a></li>
+            <li><a href="#"><i data-lucide="file-text"></i>議事録<span class="category-count">72</span></a></li>
+            <li><a href="#"><i data-lucide="book-open"></i>SOP<span class="category-count">45</span></a></li>
+            <li><a href="#"><i data-lucide="help-circle"></i>FAQ<span class="category-count">45</span></a></li>
+          </ul>
+
+          <div style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin:20px 0 8px;letter-spacing:0.04em;">出典</div>
+          <ul class="category-list">
+            <li><a href="#"><i data-lucide="file"></i>Notion<span class="category-count">156</span></a></li>
+            <li><a href="#"><i data-lucide="message-square"></i>Chatwork<span class="category-count">68</span></a></li>
+            <li><a href="#"><i data-lucide="list-todo"></i>Backlog<span class="category-count">24</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Center: Results -->
+        <div style="flex:1;overflow-y:auto;padding:0 16px;">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">8件の検索結果（0.3秒）</div>
+
+          <div class="result-card">
+            <div class="result-card-title">ザ・リッツ名古屋 — 年間見積更新の対応記録</div>
+            <div class="result-card-summary">決算月（3月）の1か月前に見積を自動生成し、メール下書きに入れる運用を開始。前年金額¥420Kベースで5%増額提案。担当:佐藤。更新時の確認事項チェックリスト付き。</div>
+            <div class="result-card-meta">
+              <span class="tag tag-blue" style="font-size:11px;">Notion</span>
+              <span class="tag tag-green" style="font-size:11px;">営業資料</span>
+              <span style="color:var(--text-muted);">関連: ザ・リッツ名古屋</span>
+              <span style="color:var(--text-muted);">2026/02/15</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-card-title">ホテル年間契約の見積タイミングに関するFAQ</div>
+            <div class="result-card-summary">Q: ホテルの年間契約見積はいつ作成すべき？ A: 決算月の1か月前が目安。顧客DBの「更新月」プロパティで自動リマインド設定済み。前年実績の±10%以内なら自動生成、超える場合は担当確認。</div>
+            <div class="result-card-meta">
+              <span class="tag tag-blue" style="font-size:11px;">Notion</span>
+              <span class="tag tag-gray" style="font-size:11px;">FAQ</span>
+              <span style="color:var(--text-muted);">2026/03/20</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-card-title">グランヴィラ東京 — 年間更新見積の商談メモ</div>
+            <div class="result-card-summary">2025年9月の更新商談。SIRCLE+FUWELの複合契約で月額¥380K→¥400Kに増額成功。決め手は「HP経由問い合わせ+42%」の実績提示。見積は決算2か月前（8月）に送付していた。</div>
+            <div class="result-card-meta">
+              <span class="tag tag-yellow" style="font-size:11px;">Chatwork</span>
+              <span class="tag tag-green" style="font-size:11px;">議事録</span>
+              <span style="color:var(--text-muted);">関連: グランヴィラ東京</span>
+              <span style="color:var(--text-muted);">2025/09/05</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-card-title">アニヴェルセル表参道 — 年間契約更新提案書テンプレート</div>
+            <div class="result-card-summary">フル導入（SIRCLE+FUWEL+TASCUT）施設向けの年間契約更新テンプレート。前年実績サマリー、当年提案内容、料金比較表のパーツ構成。稟議用に「ROI試算」セクション付き。</div>
+            <div class="result-card-meta">
+              <span class="tag tag-blue" style="font-size:11px;">Notion</span>
+              <span class="tag tag-green" style="font-size:11px;">営業資料</span>
+              <span style="color:var(--text-muted);">関連: アニヴェルセル表参道</span>
+              <span style="color:var(--text-muted);">2025/11/12</span>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <div class="result-card-title">見積書作成SOP — ホテル年間契約プラン</div>
+            <div class="result-card-summary">ホテル向け年間見積のワークフロー手順。1)顧客DBから契約情報取得 2)前年金額参照 3)テンプレートに差し込み 4)PDF生成 5)メール下書き作成。freee/PDF/BtoBの送付方式分岐あり。</div>
+            <div class="result-card-meta">
+              <span class="tag tag-blue" style="font-size:11px;">Notion</span>
+              <span class="tag tag-gray" style="font-size:11px;">SOP</span>
+              <span style="color:var(--text-muted);">2026/01/08</span>
+            </div>
+          </div>
+
+          <div class="result-card" style="opacity:0.7;">
+            <div class="result-card-title">マリエール高崎 — 契約更新時の価格交渉ログ</div>
+            <div class="result-card-summary">FUWELの年間更新で10%値下げ要求あり。競合比較資料を提示し、5%の限定的値引きで合意。交渉のポイント:機能追加による付加価値を強調…</div>
+            <div class="result-card-meta">
+              <span class="tag tag-yellow" style="font-size:11px;">Chatwork</span>
+              <span class="tag tag-green" style="font-size:11px;">議事録</span>
+              <span style="color:var(--text-muted);">2025/07/22</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: AI Answer Panel -->
+        <div style="width:320px;min-width:320px;padding-left:16px;">
+          <div class="ai-panel" style="position:sticky;top:0;">
+            <div class="ai-panel-header">
+              <i data-lucide="sparkles"></i>
+              AI回答
+            </div>
+            <p style="margin-bottom:12px;">
+              <strong>ホテルの年間契約見積のベストタイミング：</strong>
+            </p>
+            <p style="margin-bottom:10px;">
+              過去の事例から、<strong>決算月の1〜2か月前</strong>が最適です。
+            </p>
+            <ul style="padding-left:18px;margin-bottom:12px;font-size:13px;line-height:1.7;">
+              <li>ザ・リッツ名古屋 → 決算3月、見積送付は<strong>2月</strong></li>
+              <li>グランヴィラ東京 → 決算10月、見積送付は<strong>8月</strong>（2か月前）</li>
+              <li>マリエール高崎 → 決算9月、見積送付は<strong>8月</strong></li>
+            </ul>
+            <p style="margin-bottom:14px;font-size:13px;">
+              前年実績±10%以内なら自動生成可能。大幅変更がある場合は担当者確認を挟む運用が推奨されています。
+            </p>
+            <div style="border-top:1px solid #C3E0DA;padding-top:10px;font-size:12px;color:var(--text-muted);">
+              <div style="font-weight:600;margin-bottom:6px;">引用元:</div>
+              <div style="margin-bottom:4px;">
+                <a href="#" style="color:var(--accent);">📄 見積書作成SOP — ホテル年間契約プラン</a>
+              </div>
+              <div style="margin-bottom:4px;">
+                <a href="#" style="color:var(--accent);">💬 グランヴィラ東京 — 商談メモ</a>
+              </div>
+              <div>
+                <a href="#" style="color:var(--accent);">📄 ホテル年間契約FAQ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="ai-fab" title="AIアシスタント"><i data-lucide="bot"></i></button>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

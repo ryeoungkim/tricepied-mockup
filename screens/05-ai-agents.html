@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>AIエージェントコマンドセンター — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-icon">T</span>トライスパイド業務OS</div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html" class="active"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <span>AIエージェント</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">コマンドセンター</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Agent Cards -->
+      <div class="agent-grid">
+        <!-- 1: Proposal Email -->
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon" style="background:var(--accent-light);color:var(--accent);">
+              <i data-lucide="mail"></i>
+            </div>
+            <div>
+              <div class="agent-card-name">提案メール生成</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">新規・フォロー・完了報告メールを自動作成</div>
+            </div>
+          </div>
+          <div class="agent-card-stats">
+            <div>直近実行<br><span class="agent-card-stat-value">12分前</span></div>
+            <div>今月実行<br><span class="agent-card-stat-value">142回</span></div>
+            <div>成功率<br><span class="agent-card-stat-value" style="color:var(--accent);">98.6%</span></div>
+          </div>
+          <button class="btn btn-primary w-full" style="justify-content:center;"><i data-lucide="play"></i>実行</button>
+        </div>
+
+        <!-- 2: Karte -->
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon" style="background:#D3E5EF;color:var(--blue);">
+              <i data-lucide="file-bar-chart"></i>
+            </div>
+            <div>
+              <div class="agent-card-name">カルテ自動送信</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">月次カルテを自動生成しメール送付</div>
+            </div>
+          </div>
+          <div class="agent-card-stats">
+            <div>直近実行<br><span class="agent-card-stat-value">3時間前</span></div>
+            <div>今月実行<br><span class="agent-card-stat-value">38回</span></div>
+            <div>成功率<br><span class="agent-card-stat-value" style="color:var(--accent);">100%</span></div>
+          </div>
+          <button class="btn btn-primary w-full" style="justify-content:center;"><i data-lucide="play"></i>実行</button>
+        </div>
+
+        <!-- 3: Web Clip -->
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon" style="background:#F0E6F6;color:var(--purple);">
+              <i data-lucide="link"></i>
+            </div>
+            <div>
+              <div class="agent-card-name">Webクリップ</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">URLから顧客情報を抽出し顧客DBへ追加</div>
+            </div>
+          </div>
+          <div class="agent-card-stats">
+            <div>直近実行<br><span class="agent-card-stat-value">1時間前</span></div>
+            <div>今月実行<br><span class="agent-card-stat-value">67回</span></div>
+            <div>成功率<br><span class="agent-card-stat-value" style="color:var(--accent);">95.5%</span></div>
+          </div>
+          <button class="btn btn-primary w-full" style="justify-content:center;"><i data-lucide="play"></i>実行</button>
+        </div>
+
+        <!-- 4: Customer Crawl -->
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon" style="background:#FDF0D5;color:#D9730D;">
+              <i data-lucide="radar"></i>
+            </div>
+            <div>
+              <div class="agent-card-name">新規顧客クロール</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">婚礼施設の新規候補を定期スキャン</div>
+            </div>
+          </div>
+          <div class="agent-card-stats">
+            <div>直近実行<br><span class="agent-card-stat-value">昨日 22:00</span></div>
+            <div>今月実行<br><span class="agent-card-stat-value">4回</span></div>
+            <div>成功率<br><span class="agent-card-stat-value" style="color:var(--accent);">100%</span></div>
+          </div>
+          <button class="btn btn-secondary w-full" style="justify-content:center;"><i data-lucide="play"></i>実行</button>
+        </div>
+
+        <!-- 5: News Monitor -->
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon" style="background:#FFE2DD;color:var(--red);">
+              <i data-lucide="newspaper"></i>
+            </div>
+            <div>
+              <div class="agent-card-name">競合ニュース監視</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">業界ニュース・PR TIMESを毎日収集</div>
+            </div>
+          </div>
+          <div class="agent-card-stats">
+            <div>直近実行<br><span class="agent-card-stat-value">今日 06:00</span></div>
+            <div>今月実行<br><span class="agent-card-stat-value">26回</span></div>
+            <div>成功率<br><span class="agent-card-stat-value" style="color:var(--accent);">100%</span></div>
+          </div>
+          <button class="btn btn-secondary w-full" style="justify-content:center;"><i data-lucide="play"></i>実行</button>
+        </div>
+
+        <!-- 6: Dunning -->
+        <div class="agent-card">
+          <div class="agent-card-header">
+            <div class="agent-card-icon" style="background:#E3E2E0;color:#6B6B6B;">
+              <i data-lucide="bell-ring"></i>
+            </div>
+            <div>
+              <div class="agent-card-name">督促エージェント</div>
+              <div style="font-size:11.5px;color:var(--text-muted);">入金遅延を検知し督促メール草案を生成</div>
+            </div>
+          </div>
+          <div class="agent-card-stats">
+            <div>直近実行<br><span class="agent-card-stat-value">2時間前</span></div>
+            <div>今月実行<br><span class="agent-card-stat-value">8回</span></div>
+            <div>成功率<br><span class="agent-card-stat-value" style="color:var(--accent);">100%</span></div>
+          </div>
+          <button class="btn btn-secondary w-full" style="justify-content:center;"><i data-lucide="play"></i>実行</button>
+        </div>
+      </div>
+
+      <!-- Activity Log -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+          <h3 style="font-size:14px;font-weight:600;">アクティビティログ</h3>
+          <button class="btn btn-ghost text-sm"><i data-lucide="filter" style="width:13px;height:13px;"></i>フィルタ</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>時刻</th>
+              <th>エージェント</th>
+              <th>トリガー</th>
+              <th>対象</th>
+              <th>結果</th>
+              <th>詳細</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/26 09:48</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="mail" style="width:13px;height:13px;color:var(--accent);"></i>提案メール生成</span></td>
+              <td>佐藤 美咲</td>
+              <td>ハイアットリージェンシー大阪</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">メール下書き →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/26 09:32</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="mail" style="width:13px;height:13px;color:var(--accent);"></i>提案メール生成</span></td>
+              <td>田中 裕也</td>
+              <td>ロイヤルガーデン仙台</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">メール下書き →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/26 08:15</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="bell-ring" style="width:13px;height:13px;color:#6B6B6B;"></i>督促エージェント</span></td>
+              <td>自動（スケジュール）</td>
+              <td>マリエール高崎</td>
+              <td><span class="tag tag-yellow">要確認</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">督促メール →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/26 06:00</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="newspaper" style="width:13px;height:13px;color:var(--red);"></i>競合ニュース監視</span></td>
+              <td>自動（日次）</td>
+              <td>—</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">新着3件 →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/25 22:00</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="radar" style="width:13px;height:13px;color:#D9730D;"></i>新規顧客クロール</span></td>
+              <td>自動（週次）</td>
+              <td>—</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">候補5件追加 →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/25 17:20</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="link" style="width:13px;height:13px;color:var(--purple);"></i>Webクリップ</span></td>
+              <td>鈴木 健太</td>
+              <td>リビエラ逗子マリーナ</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">顧客DB →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/25 15:45</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="file-bar-chart" style="width:13px;height:13px;color:var(--blue);"></i>カルテ自動送信</span></td>
+              <td>自動（月次）</td>
+              <td>ブライダルハウス福岡</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">送信ログ →</a></td>
+            </tr>
+            <tr>
+              <td style="white-space:nowrap;color:var(--text-muted);">05/25 14:30</td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;"><i data-lucide="mail" style="width:13px;height:13px;color:var(--accent);"></i>提案メール生成</span></td>
+              <td>山田 拓海</td>
+              <td>アルカンシエル南青山</td>
+              <td><span class="tag tag-green">成功</span></td>
+              <td><a href="#" style="color:var(--accent);font-size:12.5px;">メール下書き →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <button class="ai-fab" title="AIアシスタント"><i data-lucide="bot"></i></button>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

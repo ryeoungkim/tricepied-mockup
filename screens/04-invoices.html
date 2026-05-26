@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>帳票パイプライン — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-icon">T</span>トライスパイド業務OS</div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html" class="active"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <div class="header-left">
+        <span>帳票</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">帳票パイプライン</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn notification-badge"><i data-lucide="bell"></i></button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Step Visual -->
+      <div class="steps">
+        <div class="step done">
+          <div class="step-icon"><i data-lucide="pencil"></i></div>
+          <div class="step-label">入力</div>
+        </div>
+        <div class="step-arrow"><i data-lucide="chevron-right"></i></div>
+        <div class="step done">
+          <div class="step-icon"><i data-lucide="sparkles"></i></div>
+          <div class="step-label">AI整形</div>
+        </div>
+        <div class="step-arrow"><i data-lucide="chevron-right"></i></div>
+        <div class="step active">
+          <div class="step-icon"><i data-lucide="file-output"></i></div>
+          <div class="step-label">PDF生成</div>
+        </div>
+        <div class="step-arrow"><i data-lucide="chevron-right"></i></div>
+        <div class="step">
+          <div class="step-icon"><i data-lucide="mail"></i></div>
+          <div class="step-label">メール下書き</div>
+        </div>
+        <div class="step-arrow"><i data-lucide="chevron-right"></i></div>
+        <div class="step">
+          <div class="step-icon"><i data-lucide="send"></i></div>
+          <div class="step-label">送付</div>
+        </div>
+        <div class="step-arrow"><i data-lucide="chevron-right"></i></div>
+        <div class="step">
+          <div class="step-icon"><i data-lucide="circle-check"></i></div>
+          <div class="step-label">入金確認</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div class="filter-bar" style="margin-bottom:0;">
+          <button class="filter-chip"><i data-lucide="filter"></i>フィルタ</button>
+          <button class="filter-chip">種別: すべて</button>
+          <button class="filter-chip">ステータス: すべて</button>
+          <button class="filter-chip">月: 2026年5月</button>
+        </div>
+        <button class="btn btn-primary"><i data-lucide="plus"></i>新規見積を作成</button>
+      </div>
+
+      <!-- Table -->
+      <div class="card" style="padding:0;overflow:hidden;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>帳票No.</th>
+              <th>種別</th>
+              <th>宛先</th>
+              <th style="text-align:right;">金額</th>
+              <th>ステータス</th>
+              <th>送付日</th>
+              <th>入金日</th>
+              <th>送付方式</th>
+              <th>担当</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0051</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>グランヴィラ東京</td>
+              <td style="text-align:right;font-weight:500;">¥380,000</td>
+              <td><span class="tag tag-green">完了</span></td>
+              <td>2026/05/01</td>
+              <td>2026/05/15</td>
+              <td>freee</td>
+              <td>佐藤</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0052</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>アニヴェルセル表参道</td>
+              <td style="text-align:right;font-weight:500;">¥520,000</td>
+              <td><span class="tag tag-green">完了</span></td>
+              <td>2026/05/01</td>
+              <td>2026/05/20</td>
+              <td>BtoB</td>
+              <td>佐藤</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">EST-2026-0034</td>
+              <td><span class="tag tag-yellow">見積書</span></td>
+              <td>ホテルクレスト神戸</td>
+              <td style="text-align:right;font-weight:500;">¥1,460,000</td>
+              <td><span class="tag tag-blue">送付済</span></td>
+              <td>2026/05/20</td>
+              <td>—</td>
+              <td>PDF</td>
+              <td>高橋</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0053</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>ブライダルハウス福岡</td>
+              <td style="text-align:right;font-weight:500;">¥280,000</td>
+              <td><span class="tag tag-yellow">入金待ち</span></td>
+              <td>2026/05/01</td>
+              <td>—</td>
+              <td>freee</td>
+              <td>田中</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">EST-2026-0035</td>
+              <td><span class="tag tag-yellow">見積書</span></td>
+              <td>迎賓館アルテ</td>
+              <td style="text-align:right;font-weight:500;">¥960,000</td>
+              <td><span class="tag tag-gray">未送付</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>PDF</td>
+              <td>鈴木</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0054</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>ザ・リッツ名古屋</td>
+              <td style="text-align:right;font-weight:500;">¥420,000</td>
+              <td><span class="tag tag-green">完了</span></td>
+              <td>2026/05/01</td>
+              <td>2026/05/18</td>
+              <td>BtoB</td>
+              <td>佐藤</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">APP-2026-0018</td>
+              <td><span class="tag tag-green">申込書</span></td>
+              <td>ガーデンテラス横浜</td>
+              <td style="text-align:right;font-weight:500;">¥180,000</td>
+              <td><span class="tag tag-blue">送付済</span></td>
+              <td>2026/05/22</td>
+              <td>—</td>
+              <td>PDF</td>
+              <td>山田</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0055</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>マリエール高崎</td>
+              <td style="text-align:right;font-weight:500;">¥150,000</td>
+              <td><span class="tag tag-red">要督促</span></td>
+              <td>2026/04/01</td>
+              <td>—</td>
+              <td>freee</td>
+              <td>鈴木</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">CAN-2026-0005</td>
+              <td><span class="tag tag-red">解約書</span></td>
+              <td>セレモニーホール大阪</td>
+              <td style="text-align:right;font-weight:500;">¥0</td>
+              <td><span class="tag tag-green">完了</span></td>
+              <td>2026/05/10</td>
+              <td>—</td>
+              <td>PDF</td>
+              <td>高橋</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0056</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>ノートルダム北九州</td>
+              <td style="text-align:right;font-weight:500;">¥320,000</td>
+              <td><span class="tag tag-yellow">入金待ち</span></td>
+              <td>2026/05/01</td>
+              <td>—</td>
+              <td>BtoB</td>
+              <td>田中</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">EST-2026-0036</td>
+              <td><span class="tag tag-yellow">見積書</span></td>
+              <td>ハイアットリージェンシー大阪</td>
+              <td style="text-align:right;font-weight:500;">¥2,100,000</td>
+              <td><span class="tag tag-gray">未送付</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>PDF</td>
+              <td>佐藤</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">INV-2026-0057</td>
+              <td><span class="tag tag-blue">請求書</span></td>
+              <td>エルセルモ熊本</td>
+              <td style="text-align:right;font-weight:500;">¥180,000</td>
+              <td><span class="tag tag-green">完了</span></td>
+              <td>2026/05/01</td>
+              <td>2026/05/12</td>
+              <td>freee</td>
+              <td>高橋</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Summary -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">今月発行</div>
+          <div class="kpi-value" style="font-size:22px;">12<span style="font-size:14px;font-weight:400;color:var(--text-muted)">件</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">入金済</div>
+          <div class="kpi-value" style="font-size:22px;color:var(--accent);">¥1.50M</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">入金待ち</div>
+          <div class="kpi-value" style="font-size:22px;color:var(--orange);">¥600K</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">要督促</div>
+          <div class="kpi-value" style="font-size:22px;color:var(--red);">1<span style="font-size:14px;font-weight:400;color:var(--text-muted)">件</span></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="ai-fab" title="AIアシスタント"><i data-lucide="bot"></i></button>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>
