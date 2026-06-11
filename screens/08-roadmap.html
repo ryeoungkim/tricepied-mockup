@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>業務OS導入ロードマップ — トライスパイド業務OS</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ===== Roadmap-specific ===== */
+    .roadmap-hero {
+      background: linear-gradient(135deg, #F7F7F5 0%, #E6F4F1 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .roadmap-hero h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .roadmap-hero p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .roadmap-hero .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11.5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .roadmap-hero .hero-stats {
+      display: flex;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .roadmap-hero .hero-stat {
+      text-align: center;
+      padding: 0 12px;
+    }
+    .roadmap-hero .hero-stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    .roadmap-hero .hero-stat-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ===== Gantt ===== */
+    .gantt-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .gantt-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .gantt-title h3 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .gantt-title .legend {
+      display: flex;
+      gap: 14px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+    .gantt-title .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .gantt-title .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    /* Grid: 1 label col + 12 bi-weekly cols */
+    .gantt-grid {
+      display: grid;
+      grid-template-columns: 260px repeat(12, 1fr);
+      column-gap: 0;
+      row-gap: 4px;
+      position: relative;
+    }
+
+    .gantt-month-row,
+    .gantt-week-row,
+    .gantt-task-row,
+    .gantt-phase-row {
+      display: contents;
+    }
+
+    /* Month header */
+    .gantt-cell-label {
+      grid-column: 1;
+      padding: 6px 8px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+    }
+    .gantt-month {
+      padding: 8px 0 6px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .gantt-week {
+      padding: 4px 0;
+      text-align: center;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Bar lane (cols 2-13) */
+    .gantt-lane {
+      grid-column: 2 / span 12;
+      position: relative;
+      height: 26px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: center;
+      border-top: 1px dashed transparent;
+    }
+    .gantt-lane.with-divider {
+      border-top: 1px solid var(--border);
+    }
+
+    /* Grid background lines */
+    .gantt-lane::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc(100%/12 - 1px),
+        #F0EFED calc(100%/12 - 1px),
+        #F0EFED calc(100%/12)
+      );
+      pointer-events: none;
+    }
+    .gantt-lane::after {
+      content: '';
+      position: absolute;
+      left: calc(100%/6);
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+      pointer-events: none;
+    }
+
+    .gantt-bar {
+      grid-row: 1;
+      height: 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 11px;
+      color: var(--white);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      z-index: 1;
+    }
+    .gantt-bar.bar-faint {
+      opacity: 0.75;
+    }
+
+    /* Phase colors */
+    .bar-p0 { background: #9B51E0; }
+    .bar-p1 { background: #0F7B6C; }
+    .bar-p2 { background: #2F80ED; }
+    .bar-p3 { background: #F2994A; }
+    .bar-p4 { background: #27AE60; }
+    .bar-p5 { background: #D9730D; }
+
+    .phase-header-row {
+      display: contents;
+    }
+    .phase-header-label {
+      grid-column: 1;
+      padding: 10px 8px 4px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .phase-header-label .phase-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .phase-header-strip {
+      grid-column: 2 / span 12;
+      height: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Task label */
+    .task-label {
+      grid-column: 1;
+      padding: 4px 8px 4px 22px;
+      font-size: 12.5px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .task-label .task-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* Milestones */
+    .milestone-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 260px repeat(12, 1fr);
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 6px;
+    }
+    .milestone-row .ms-label {
+      padding: 0 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .milestone-row .ms-lane {
+      grid-column: 2 / span 12;
+      position: relative;
+      height: 22px;
+    }
+    .ms-flag {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .ms-flag .ms-diamond {
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .ms-flag.ms-final .ms-diamond {
+      background: var(--red);
+      box-shadow: 0 0 0 1px var(--red);
+    }
+    .ms-flag.ms-final {
+      color: var(--red);
+    }
+
+    /* Today marker */
+    .today-marker {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--red);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .today-marker::before {
+      content: '今日';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: var(--white);
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Phase detail cards */
+    .phase-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .phase-detail-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      border-top: 3px solid;
+    }
+    .phase-detail-card.p0 { border-top-color: #9B51E0; }
+    .phase-detail-card.p1 { border-top-color: #0F7B6C; }
+    .phase-detail-card.p2 { border-top-color: #2F80ED; }
+    .phase-detail-card.p3 { border-top-color: #F2994A; }
+    .phase-detail-card.p4 { border-top-color: #27AE60; }
+    .phase-detail-card.p5 { border-top-color: #D9730D; }
+
+    .phase-detail-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .phase-detail-head .phase-num {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+    .phase-detail-head .phase-period {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .phase-detail-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .phase-detail-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .phase-detail-card ul li {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .phase-detail-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 11px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+    .phase-detail-card .deliverable-tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 3px 10px;
+      background: var(--bg);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Investment / ownership table */
+    .owner-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .owner-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .owner-table th {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .owner-table td {
+      padding: 10px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .role-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .role-pill.tri { background: #E6F4F1; color: var(--accent); }
+    .role-pill.cli { background: #FDF0D5; color: #D9730D; }
+    .role-pill.joint { background: #D3E5EF; color: #2F80ED; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">T</span>
+      トライスパイド業務OS
+    </div>
+    <div class="sidebar-section">メニュー</div>
+    <ul class="sidebar-nav">
+      <li><a href="01-dashboard.html"><i data-lucide="layout-dashboard"></i>ダッシュボード</a></li>
+      <li><a href="02-customer-db.html"><i data-lucide="building-2"></i>顧客DB</a></li>
+      <li><a href="03-proposal.html"><i data-lucide="file-text"></i>提案</a></li>
+      <li><a href="04-invoices.html"><i data-lucide="receipt"></i>帳票</a></li>
+      <li><a href="06-knowledge.html"><i data-lucide="book-open"></i>ナレッジ</a></li>
+      <li><a href="05-ai-agents.html"><i data-lucide="bot"></i>AIエージェント</a></li>
+      <li><a href="#"><i data-lucide="newspaper"></i>ニュース</a></li>
+    </ul>
+    <div class="sidebar-section">提案資料</div>
+    <ul class="sidebar-nav">
+      <li><a href="08-roadmap.html" class="active"><i data-lucide="calendar-range"></i>導入ロードマップ</a></li>
+    </ul>
+    <div class="sidebar-section">ワークスペース</div>
+    <ul class="sidebar-nav">
+      <li><a href="07-requests.html"><i data-lucide="clipboard-list"></i>制作依頼</a></li>
+      <li><a href="#"><i data-lucide="settings"></i>設定</a></li>
+    </ul>
+    <div class="sidebar-footer">トライスパイド業務OS v1.0</div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span>提案資料</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="page-title">業務OS導入ロードマップ</span>
+      </div>
+      <div class="header-right">
+        <button class="header-btn"><i data-lucide="printer"></i>PDF出力</button>
+        <button class="header-btn"><i data-lucide="share-2"></i>共有</button>
+        <button class="header-btn primary"><i data-lucide="sparkles"></i>AI</button>
+        <div class="avatar">田</div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Hero -->
+      <div class="roadmap-hero">
+        <div>
+          <span class="hero-badge"><i data-lucide="rocket" style="width:13px;height:13px"></i>トライスパイド様 ご提案</span>
+          <h2>業務OS導入 6ヶ月ロードマップ</h2>
+          <p>提案承認から本番稼働まで、4階層（情報基盤 → 業務生成 → AI連携 → 管理高度化）を段階的に構築。<br>各フェーズ完了時点で「使える状態」となり、業務改善効果を早期に実感いただけます。</p>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">6<span style="font-size:13px;color:var(--text-muted);font-weight:500">ヶ月</span></div>
+            <div class="hero-stat-label">導入期間</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">6<span style="font-size:13px;color:var(--text-muted);font-weight:500">フェーズ</span></div>
+            <div class="hero-stat-label">段階構築</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">7<span style="font-size:13px;color:var(--text-muted);font-weight:500">機能</span></div>
+            <div class="hero-stat-label">導入モジュール</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gantt -->
+      <div class="gantt-card">
+        <div class="gantt-title">
+          <h3>導入スケジュール（ガントチャート）</h3>
+          <div class="legend">
+            <span class="legend-item"><span class="legend-swatch" style="background:#9B51E0"></span>準備</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#0F7B6C"></span>情報基盤</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#2F80ED"></span>業務生成</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#F2994A"></span>AI連携</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#27AE60"></span>管理高度化</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#D9730D"></span>定着支援</span>
+          </div>
+        </div>
+
+        <div class="gantt-grid">
+          <!-- Month header -->
+          <div class="gantt-cell-label" style="font-weight:600;color:var(--text)">期間</div>
+          <div class="gantt-month" style="grid-column: 2 / span 2">M1</div>
+          <div class="gantt-month" style="grid-column: 4 / span 2">M2</div>
+          <div class="gantt-month" style="grid-column: 6 / span 2">M3</div>
+          <div class="gantt-month" style="grid-column: 8 / span 2">M4</div>
+          <div class="gantt-month" style="grid-column: 10 / span 2">M5</div>
+          <div class="gantt-month" style="grid-column: 12 / span 2">M6</div>
+
+          <!-- Week header -->
+          <div class="gantt-cell-label">タスク</div>
+          <div class="gantt-week" style="grid-column: 2">前半</div>
+          <div class="gantt-week" style="grid-column: 3">後半</div>
+          <div class="gantt-week" style="grid-column: 4">前半</div>
+          <div class="gantt-week" style="grid-column: 5">後半</div>
+          <div class="gantt-week" style="grid-column: 6">前半</div>
+          <div class="gantt-week" style="grid-column: 7">後半</div>
+          <div class="gantt-week" style="grid-column: 8">前半</div>
+          <div class="gantt-week" style="grid-column: 9">後半</div>
+          <div class="gantt-week" style="grid-column: 10">前半</div>
+          <div class="gantt-week" style="grid-column: 11">後半</div>
+          <div class="gantt-week" style="grid-column: 12">前半</div>
+          <div class="gantt-week" style="grid-column: 13">後半</div>
+
+          <!-- Milestones row -->
+          <div class="milestone-row">
+            <div class="ms-label"><i data-lucide="flag" style="width:13px;height:13px"></i>マイルストーン</div>
+            <div class="ms-lane">
+              <div class="ms-flag" style="left: calc(100%/12 * 2 - 100%/24)">
+                <div class="ms-diamond"></div>
+                <span>キックオフ</span>
+              </div>
+              <div class="ms-flag" style="left: calc(100%/12 * 5 - 100%/24)">
+                <div class="ms-diamond"></div>
+                <span>SSOT基盤β</span>
+              </div>
+              <div class="ms-flag" style="left: calc(100%/12 * 8 - 100%/24)">
+                <div class="ms-diamond"></div>
+                <span>業務生成β</span>
+              </div>
+              <div class="ms-flag" style="left: calc(100%/12 * 10 - 100%/24)">
+                <div class="ms-diamond"></div>
+                <span>AI自動化β</span>
+              </div>
+              <div class="ms-flag ms-final" style="left: calc(100%/12 * 12 - 100%/24)">
+                <div class="ms-diamond"></div>
+                <span>本番稼働 🎯</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 0 -->
+          <div class="phase-header-row">
+            <div class="phase-header-label" style="color:#9B51E0">
+              <span class="phase-dot" style="background:#9B51E0"></span>フェーズ0 / 準備
+            </div>
+            <div class="phase-header-strip"></div>
+          </div>
+          <div class="task-label">キックオフMTG <span class="task-sub">1週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p0" style="grid-column: 1 / span 1">キックオフ</div>
+          </div>
+          <div class="task-label">現状業務ヒアリング <span class="task-sub">2週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p0" style="grid-column: 1 / span 2">業務ヒアリング</div>
+          </div>
+          <div class="task-label">データ棚卸し <span class="task-sub">2週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p0 bar-faint" style="grid-column: 2 / span 2">既存データ棚卸し</div>
+          </div>
+
+          <!-- Phase 1 -->
+          <div class="phase-header-row">
+            <div class="phase-header-label" style="color:#0F7B6C">
+              <span class="phase-dot" style="background:#0F7B6C"></span>フェーズ1 / 情報基盤（レイヤー0・SSOT）
+            </div>
+            <div class="phase-header-strip"></div>
+          </div>
+          <div class="task-label">顧客DB設計・構築 <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p1" style="grid-column: 2 / span 3">顧客DB（SSOT）構築</div>
+          </div>
+          <div class="task-label">ナレッジDB構築 <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p1" style="grid-column: 3 / span 3">ナレッジDB横断検索</div>
+          </div>
+          <div class="task-label">既存データ移行 <span class="task-sub">2週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p1 bar-faint" style="grid-column: 4 / span 2">データ移行・クレンジング</div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="phase-header-row">
+            <div class="phase-header-label" style="color:#2F80ED">
+              <span class="phase-dot" style="background:#2F80ED"></span>フェーズ2 / 業務生成（レイヤー1）
+            </div>
+            <div class="phase-header-strip"></div>
+          </div>
+          <div class="task-label">提案書ドラフト自動生成 <span class="task-sub">4週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p2" style="grid-column: 4 / span 4">提案書AI生成エンジン</div>
+          </div>
+          <div class="task-label">帳票自動化（見積・申込・請求） <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p2" style="grid-column: 5 / span 3">帳票パイプライン</div>
+          </div>
+          <div class="task-label">社内制作依頼カンバン <span class="task-sub">2週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p2 bar-faint" style="grid-column: 6 / span 2">制作依頼フロー</div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="phase-header-row">
+            <div class="phase-header-label" style="color:#F2994A">
+              <span class="phase-dot" style="background:#F2994A"></span>フェーズ3 / AI連携（レイヤー1〜2）
+            </div>
+            <div class="phase-header-strip"></div>
+          </div>
+          <div class="task-label">AIエージェント開発（6種） <span class="task-sub">4週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p3" style="grid-column: 7 / span 4">AIエージェント実装</div>
+          </div>
+          <div class="task-label">外部連携（Chatwork/Notion/Slack） <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p3" style="grid-column: 7 / span 3">外部システム連携</div>
+          </div>
+          <div class="task-label">メール・督促自動化 <span class="task-sub">2週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p3 bar-faint" style="grid-column: 9 / span 2">自動送信ワークフロー</div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="phase-header-row">
+            <div class="phase-header-label" style="color:#27AE60">
+              <span class="phase-dot" style="background:#27AE60"></span>フェーズ4 / 管理高度化（レイヤー3）
+            </div>
+            <div class="phase-header-strip"></div>
+          </div>
+          <div class="task-label">KPI設計・指標定義 <span class="task-sub">2週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p4" style="grid-column: 9 / span 2">KPI設計</div>
+          </div>
+          <div class="task-label">経営ダッシュボード構築 <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p4" style="grid-column: 9 / span 3">ダッシュボード実装</div>
+          </div>
+
+          <!-- Phase 5 -->
+          <div class="phase-header-row">
+            <div class="phase-header-label" style="color:#D9730D">
+              <span class="phase-dot" style="background:#D9730D"></span>フェーズ5 / 定着支援・本番稼働
+            </div>
+            <div class="phase-header-strip"></div>
+          </div>
+          <div class="task-label">トレーニング・操作研修 <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p5" style="grid-column: 10 / span 3">社内トレーニング</div>
+          </div>
+          <div class="task-label">運用マニュアル整備 <span class="task-sub">3週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p5 bar-faint" style="grid-column: 10 / span 3">運用ドキュメント</div>
+          </div>
+          <div class="task-label">本番稼働・伴走支援開始 <span class="task-sub">1週</span></div>
+          <div class="gantt-lane">
+            <div class="gantt-bar bar-p5" style="grid-column: 12 / span 1">🎯 本番稼働</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase Detail Cards -->
+      <h3 style="font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text-secondary)">フェーズ別の主な成果物</h3>
+      <div class="phase-detail-grid">
+        <div class="phase-detail-card p0">
+          <div class="phase-detail-head">
+            <span class="phase-num">PHASE 0</span>
+            <span class="phase-period">M1（2週間）</span>
+          </div>
+          <h4>準備・キックオフ</h4>
+          <ul>
+            <li>キックオフMTG・体制確定</li>
+            <li>営業／制作／管理の業務フロー可視化</li>
+            <li>Chatwork・Notion・Backlog内データ棚卸し</li>
+            <li>Phase1優先機能の合意形成</li>
+          </ul>
+          <span class="deliverable-tag">成果物: 現状業務マップ・要件定義書</span>
+        </div>
+
+        <div class="phase-detail-card p1">
+          <div class="phase-detail-head">
+            <span class="phase-num">PHASE 1</span>
+            <span class="phase-period">M2〜M3前半（6週間）</span>
+          </div>
+          <h4>情報基盤・脱属人化</h4>
+          <ul>
+            <li>顧客データベース（SSOT）構築</li>
+            <li>ナレッジDB・横断検索基盤</li>
+            <li>既存データ移行・クレンジング</li>
+            <li>権限・アクセス制御の設定</li>
+          </ul>
+          <span class="deliverable-tag">成果物: 顧客DB / ナレッジDB</span>
+        </div>
+
+        <div class="phase-detail-card p2">
+          <div class="phase-detail-head">
+            <span class="phase-num">PHASE 2</span>
+            <span class="phase-period">M3前半〜M4前半（6週間）</span>
+          </div>
+          <h4>業務生成の自動化</h4>
+          <ul>
+            <li>提案書ドラフト自動生成（AI）</li>
+            <li>帳票自動化（見積・申込・請求）</li>
+            <li>社内制作依頼カンバン</li>
+            <li>テンプレート・ワークフロー登録</li>
+          </ul>
+          <span class="deliverable-tag">成果物: 3モジュール本格稼働</span>
+        </div>
+
+        <div class="phase-detail-card p3">
+          <div class="phase-detail-head">
+            <span class="phase-num">PHASE 3</span>
+            <span class="phase-period">M4〜M5前半（5週間）</span>
+          </div>
+          <h4>AI連携・完全自動化</h4>
+          <ul>
+            <li>6種のAIエージェント実装</li>
+            <li>Chatwork／Notion／Slack 連携</li>
+            <li>提案メール・督促の自動送信</li>
+            <li>Webクリップ・競合監視</li>
+          </ul>
+          <span class="deliverable-tag">成果物: AIエージェントセンター</span>
+        </div>
+
+        <div class="phase-detail-card p4">
+          <div class="phase-detail-head">
+            <span class="phase-num">PHASE 4</span>
+            <span class="phase-period">M5前半〜M6前半（3週間）</span>
+          </div>
+          <h4>管理高度化・経営可視化</h4>
+          <ul>
+            <li>KPI設計（売上・受注・継続率）</li>
+            <li>経営ダッシュボード構築</li>
+            <li>個人別進捗・プロダクト別売上</li>
+            <li>AI自動サマリー（週次レポート）</li>
+          </ul>
+          <span class="deliverable-tag">成果物: 経営ダッシュボード</span>
+        </div>
+
+        <div class="phase-detail-card p5">
+          <div class="phase-detail-head">
+            <span class="phase-num">PHASE 5</span>
+            <span class="phase-period">M6（3週間）</span>
+          </div>
+          <h4>定着支援・本番稼働</h4>
+          <ul>
+            <li>営業／制作チーム向けトレーニング</li>
+            <li>運用マニュアル・SOP整備</li>
+            <li>本番切替・データ最終移行</li>
+            <li>稼働後3ヶ月の伴走支援開始</li>
+          </ul>
+          <span class="deliverable-tag">成果物: 本番稼働・運用体制</span>
+        </div>
+      </div>
+
+      <!-- Ownership table -->
+      <div class="owner-card">
+        <h3>体制・役割分担</h3>
+        <table class="owner-table">
+          <thead>
+            <tr>
+              <th>フェーズ</th>
+              <th style="width:140px">主要タスク</th>
+              <th style="width:120px">トライスパイド様</th>
+              <th style="width:120px">当社</th>
+              <th>主な打ち合わせ頻度</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>P0</strong> 準備</td>
+              <td>業務ヒアリング</td>
+              <td><span class="role-pill cli">主担当</span></td>
+              <td><span class="role-pill tri">支援</span></td>
+              <td>週2回（各60分）</td>
+            </tr>
+            <tr>
+              <td><strong>P1</strong> 情報基盤</td>
+              <td>DB構築・データ移行</td>
+              <td><span class="role-pill cli">データ提供</span></td>
+              <td><span class="role-pill tri">構築主担当</span></td>
+              <td>週1回（定例60分）</td>
+            </tr>
+            <tr>
+              <td><strong>P2</strong> 業務生成</td>
+              <td>AI／帳票実装</td>
+              <td><span class="role-pill joint">テンプレ提供</span></td>
+              <td><span class="role-pill tri">開発主担当</span></td>
+              <td>週1回（定例60分）</td>
+            </tr>
+            <tr>
+              <td><strong>P3</strong> AI連携</td>
+              <td>エージェント・外部連携</td>
+              <td><span class="role-pill joint">運用設計</span></td>
+              <td><span class="role-pill tri">開発主担当</span></td>
+              <td>隔週（60分）</td>
+            </tr>
+            <tr>
+              <td><strong>P4</strong> 管理高度化</td>
+              <td>KPI設計・BI</td>
+              <td><span class="role-pill cli">KPI定義</span></td>
+              <td><span class="role-pill tri">ダッシュ構築</span></td>
+              <td>隔週（60分）</td>
+            </tr>
+            <tr>
+              <td><strong>P5</strong> 定着支援</td>
+              <td>トレーニング・本番化</td>
+              <td><span class="role-pill cli">受講・運用</span></td>
+              <td><span class="role-pill tri">講師・伴走</span></td>
+              <td>週2回（実機研修）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- AI Fab -->
+<a href="#" class="ai-fab"><i data-lucide="sparkles"></i></a>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
