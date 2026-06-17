@@ -436,6 +436,114 @@
     .role-pill.tri { background: #E6F4F1; color: var(--accent); }
     .role-pill.cli { background: #FDF0D5; color: #D9730D; }
     .role-pill.joint { background: #D3E5EF; color: #2F80ED; }
+
+    /* ===== Team profile cards ===== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      border-top: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+    }
+    .team-card.role-director { border-top-color: #9B51E0; }
+    .team-card.role-lead { border-top-color: var(--accent); }
+    .team-card.role-eng { border-top-color: #2F80ED; }
+
+    .team-role {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .team-card.role-director .team-role { color: #9B51E0; }
+    .team-card.role-lead .team-role { color: var(--accent); }
+    .team-card.role-eng .team-role { color: #2F80ED; }
+
+    .team-name {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .team-name .team-ruby {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .team-affil {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .team-bio {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .team-section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      margin-top: 4px;
+    }
+    .team-points {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+    .team-points li {
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 3px 0 3px 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .team-points li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 10px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+    .team-points li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .team-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .team-tag {
+      font-size: 10.5px;
+      background: var(--bg);
+      color: var(--text-secondary);
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -847,6 +955,124 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- Team Profiles -->
+      <div class="owner-card">
+        <h3>担当チーム</h3>
+        <div class="team-grid">
+
+          <!-- Director -->
+          <div class="team-card role-director">
+            <div class="team-role">DIRECTOR</div>
+            <div class="team-name">金 麗雄<span class="team-ruby">キム・レイユウ</span></div>
+            <p class="team-affil">
+              株式会社リエゾン 代表取締役社長<br>
+              株式会社クロステック・マネジメント Director's Office COO
+            </p>
+            <p class="team-bio">
+              「組織そのものをプロダクトとして設計する」思想のもと、AI／組織変革案件をリード。
+              業務プロセスの可視化から AI エージェント設計、現場定着までを一貫指揮します。
+            </p>
+
+            <div class="team-section-label">クロステック・マネジメントでの AI／DX 業務</div>
+            <ul class="team-points">
+              <li><strong>京都芸術大学 DX 推進</strong>プロジェクトの統括（7組織横断）</li>
+              <li>Claude＋MCP を中核とした <strong>AI 業務 OS の設計思想構築</strong></li>
+              <li><strong>コレクティブ型組織</strong>のオペレーション設計</li>
+              <li>「学びのかたち」の根本的な再構築</li>
+            </ul>
+
+            <div class="team-section-label">経歴ハイライト</div>
+            <ul class="team-points">
+              <li>楽天株式会社｜<strong>楽天イーグルス創業</strong>メンバー（球団社長補佐）</li>
+              <li>キラメックス｜<strong>TechAcademy 累計3万人超</strong>へ成長、バイアウト</li>
+              <li>株式会社リエゾン 代表取締役（2008〜）</li>
+            </ul>
+
+            <div class="team-tags">
+              <span class="team-tag">組織設計</span>
+              <span class="team-tag">事業立ち上げ</span>
+              <span class="team-tag">教育・人材</span>
+              <span class="team-tag">AI 戦略</span>
+            </div>
+          </div>
+
+          <!-- Project Lead -->
+          <div class="team-card role-lead">
+            <div class="team-role">PROJECT LEAD</div>
+            <div class="team-name">松本 正道<span class="team-ruby">まつもと・まさみち</span></div>
+            <p class="team-affil">
+              INFRONT 株式会社 代表取締役<br>
+              株式会社クロステック・マネジメント 業務委託<br>
+              株式会社リエゾン AI 10x チーム 兼任
+            </p>
+            <p class="team-bio">
+              WEB 戦略コンサル × AI エージェント構築を一貫対応。業務プロセスの棚卸しから
+              AI エージェント設計、業務 OS の構築・運用までを現場担当として推進します。
+            </p>
+
+            <div class="team-section-label">クロステック・マネジメントでの AI／DX 業務</div>
+            <ul class="team-points">
+              <li>京都芸術大学 DX 推進プロジェクト（2025年4月〜現在）</li>
+              <li>業務プロセスのワークフロー／シーケンス図化</li>
+              <li><strong>3段階カスタム AI エージェント</strong>の設計</li>
+              <li>100倍スケール拡大を前提とした業務再設計</li>
+            </ul>
+
+            <div class="team-section-label">自社展開「INFRONTAI」</div>
+            <ul class="team-points">
+              <li>Claude＋MCP を中核とした <strong>AI 業務 OS</strong> を自社設計・運用</li>
+              <li><strong>提案書自動生成エージェント</strong>（39社のユースケースDB基盤）</li>
+              <li><strong>AI 秘書エージェント</strong>（朝 Slack で TOP5 アクション配信）</li>
+              <li>業務プロセス棚卸し DB／SKILL.md ベース知識パッケージ</li>
+            </ul>
+
+            <div class="team-tags">
+              <span class="team-tag">AI エージェント</span>
+              <span class="team-tag">DX 推進</span>
+              <span class="team-tag">WEB 戦略</span>
+              <span class="team-tag">事業立ち上げ</span>
+            </div>
+          </div>
+
+          <!-- Engineer -->
+          <div class="team-card role-eng">
+            <div class="team-role">ENGINEER</div>
+            <div class="team-name">黄 聖浩<span class="team-ruby">ファン・ソンホ</span></div>
+            <p class="team-affil">
+              株式会社 SunArk Labs 代表取締役<br>
+              株式会社リエゾン AI 10x チーム 兼任
+            </p>
+            <p class="team-bio">
+              生成 AI／LLM を用いた AI ソリューション／エージェント実装の専門家。
+              要件整理から本番運用まで一貫して担当し、顧客先に入り現場と伴走しながら
+              業務に合った形で導入を進めるスタイルが特長。
+            </p>
+
+            <div class="team-section-label">専門領域</div>
+            <ul class="team-points">
+              <li>生成 AI／LLM を用いた <strong>AI エージェント実装</strong></li>
+              <li>業務システム・WEB アプリ・<strong>クラウドシステム</strong>の設計・開発</li>
+              <li>営業・バックオフィスの<strong>定型作業を AI で自動化</strong></li>
+            </ul>
+
+            <div class="team-section-label">スタイル</div>
+            <ul class="team-points">
+              <li>業務システム・WEB・クラウド開発に<strong>長年従事</strong>、前職役員を経て独立</li>
+              <li>要件整理 → 設計 → 実装 → <strong>本番運用まで一貫</strong>担当</li>
+              <li>顧客先に入り、<strong>現場と伴走</strong>しながら導入を推進</li>
+            </ul>
+
+            <div class="team-tags">
+              <span class="team-tag">生成 AI</span>
+              <span class="team-tag">LLM</span>
+              <span class="team-tag">エージェント実装</span>
+              <span class="team-tag">業務自動化</span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
