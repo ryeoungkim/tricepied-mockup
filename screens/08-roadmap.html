@@ -437,6 +437,142 @@
     .role-pill.cli { background: #FDF0D5; color: #D9730D; }
     .role-pill.joint { background: #D3E5EF; color: #2F80ED; }
 
+    /* ===== Cost breakdown ===== */
+    .cost-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .cost-card-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+    .cost-card-head h3 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .cost-card-head .cost-note {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .cost-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: linear-gradient(135deg, #F7F7F5 0%, #E6F4F1 100%);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+    }
+    .cost-stat {
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .cost-stat:last-child { border-right: none; }
+    .cost-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    .cost-stat-value .unit {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-left: 2px;
+    }
+    .cost-stat-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .cost-table { width: 100%; }
+    .cost-table th {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .cost-table td {
+      padding: 10px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .cost-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .cost-table .role-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .cost-table .dot-lead { background: var(--accent); }
+    .cost-table .dot-director { background: #9B51E0; }
+    .cost-table .dot-eng { background: #2F80ED; }
+    .cost-table .row-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .cost-table .row-name-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-left: 0;
+      font-weight: 400;
+    }
+    .cost-table tr.total td {
+      font-weight: 700;
+      color: var(--text);
+      background: var(--bg);
+      border-bottom: none;
+    }
+    .cost-table tr.total td.num {
+      color: var(--accent);
+    }
+
+    .cost-alloc {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+    }
+    .cost-alloc-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .cost-alloc-bar {
+      display: flex;
+      height: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .cost-alloc-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11.5px;
+      color: var(--white);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .cost-alloc-seg.seg-lead { background: var(--accent); }
+    .cost-alloc-seg.seg-director { background: #9B51E0; }
+    .cost-alloc-seg.seg-eng { background: #2F80ED; }
+
     /* ===== Team profile cards ===== */
     .team-grid {
       display: grid;
@@ -799,6 +935,88 @@
           <div class="task-label">本番稼働・伴走支援開始 <span class="task-sub">1週</span></div>
           <div class="gantt-lane">
             <div class="gantt-bar bar-p5" style="grid-column: 12 / span 1">🎯 本番稼働</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cost breakdown -->
+      <div class="cost-card">
+        <div class="cost-card-head">
+          <h3>投資概算 ／ 月次費用内訳</h3>
+          <span class="cost-note">税別 ／ 単価 ¥50,000/時間・人</span>
+        </div>
+
+        <div class="cost-stats">
+          <div class="cost-stat">
+            <div class="cost-stat-value">¥6,000,000</div>
+            <div class="cost-stat-label">6ヶ月総額</div>
+          </div>
+          <div class="cost-stat">
+            <div class="cost-stat-value">¥1,000,000<span class="unit">/月</span></div>
+            <div class="cost-stat-label">月額</div>
+          </div>
+          <div class="cost-stat">
+            <div class="cost-stat-value">20<span class="unit">時間/月</span></div>
+            <div class="cost-stat-label">月稼働時間</div>
+          </div>
+          <div class="cost-stat">
+            <div class="cost-stat-value">3<span class="unit">名体制</span></div>
+            <div class="cost-stat-label">担当チーム</div>
+          </div>
+        </div>
+
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>担当</th>
+              <th>役割</th>
+              <th class="num">月稼働時間</th>
+              <th class="num">月額（税別）</th>
+              <th class="num">6ヶ月合計（税別）</th>
+              <th class="num">構成比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="role-dot dot-lead"></span><span class="row-name">松本 正道</span></td>
+              <td>プロジェクトリード</td>
+              <td class="num">10 時間</td>
+              <td class="num">¥500,000</td>
+              <td class="num">¥3,000,000</td>
+              <td class="num">50%</td>
+            </tr>
+            <tr>
+              <td><span class="role-dot dot-director"></span><span class="row-name">金 麗雄</span></td>
+              <td>ディレクター</td>
+              <td class="num">5 時間</td>
+              <td class="num">¥250,000</td>
+              <td class="num">¥1,500,000</td>
+              <td class="num">25%</td>
+            </tr>
+            <tr>
+              <td><span class="role-dot dot-eng"></span><span class="row-name">黄 聖浩</span></td>
+              <td>エンジニア</td>
+              <td class="num">5 時間</td>
+              <td class="num">¥250,000</td>
+              <td class="num">¥1,500,000</td>
+              <td class="num">25%</td>
+            </tr>
+            <tr class="total">
+              <td colspan="2">合計</td>
+              <td class="num">20 時間</td>
+              <td class="num">¥1,000,000</td>
+              <td class="num">¥6,000,000</td>
+              <td class="num">100%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="cost-alloc">
+          <div class="cost-alloc-label">月稼働時間の配分（合計 20 時間／月）</div>
+          <div class="cost-alloc-bar">
+            <div class="cost-alloc-seg seg-lead" style="width:50%">松本 10h</div>
+            <div class="cost-alloc-seg seg-director" style="width:25%">金 5h</div>
+            <div class="cost-alloc-seg seg-eng" style="width:25%">黄 5h</div>
           </div>
         </div>
       </div>
