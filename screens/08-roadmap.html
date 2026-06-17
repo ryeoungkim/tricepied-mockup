@@ -532,14 +532,46 @@
       margin-left: 0;
       font-weight: 400;
     }
+    .cost-table tr.subtotal td {
+      font-weight: 600;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .cost-table tr.subtotal td.num {
+      color: var(--text);
+    }
     .cost-table tr.total td {
       font-weight: 700;
       color: var(--text);
-      background: var(--bg);
+      background: var(--accent-light);
       border-bottom: none;
+      border-top: 2px solid var(--accent);
+      font-size: 14px;
     }
     .cost-table tr.total td.num {
       color: var(--accent);
+      font-size: 15px;
+    }
+    .cost-table tr.cost-initial td {
+      background: #FBF7EE;
+    }
+    .cost-table .row-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #FDF0D5;
+      color: #D9730D;
+      font-size: 10.5px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .cost-table .row-name-sub-block {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-top: 2px;
     }
 
     .cost-alloc {
@@ -948,20 +980,20 @@
 
         <div class="cost-stats">
           <div class="cost-stat">
-            <div class="cost-stat-value">¥6,000,000</div>
-            <div class="cost-stat-label">6ヶ月総額</div>
+            <div class="cost-stat-value">¥6,200,000</div>
+            <div class="cost-stat-label">総合計（税別）</div>
           </div>
           <div class="cost-stat">
-            <div class="cost-stat-value">¥1,000,000<span class="unit">/月</span></div>
-            <div class="cost-stat-label">月額</div>
+            <div class="cost-stat-value">¥200,000</div>
+            <div class="cost-stat-label">初期費用（着手時一括）</div>
+          </div>
+          <div class="cost-stat">
+            <div class="cost-stat-value">¥1,000,000<span class="unit">/月 × 6</span></div>
+            <div class="cost-stat-label">月次稼働料</div>
           </div>
           <div class="cost-stat">
             <div class="cost-stat-value">20<span class="unit">時間/月</span></div>
-            <div class="cost-stat-label">月稼働時間</div>
-          </div>
-          <div class="cost-stat">
-            <div class="cost-stat-value">3<span class="unit">名体制</span></div>
-            <div class="cost-stat-label">担当チーム</div>
+            <div class="cost-stat-label">月稼働（3名体制）</div>
           </div>
         </div>
 
@@ -977,6 +1009,16 @@
             </tr>
           </thead>
           <tbody>
+            <tr class="cost-initial">
+              <td colspan="2">
+                <span class="row-name">初期調査設計費</span><span class="row-tag">着手時一括</span>
+                <span class="row-name-sub-block">業務ヒアリング ／ 要件整理 ／ 体制設計</span>
+              </td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td class="num">¥200,000</td>
+              <td class="num">—</td>
+            </tr>
             <tr>
               <td><span class="role-dot dot-lead"></span><span class="row-name">松本 正道</span></td>
               <td>プロジェクトリード</td>
@@ -1001,12 +1043,17 @@
               <td class="num">¥1,500,000</td>
               <td class="num">25%</td>
             </tr>
-            <tr class="total">
-              <td colspan="2">合計</td>
+            <tr class="subtotal">
+              <td colspan="2">月次稼働料 小計</td>
               <td class="num">20 時間</td>
               <td class="num">¥1,000,000</td>
               <td class="num">¥6,000,000</td>
               <td class="num">100%</td>
+            </tr>
+            <tr class="total">
+              <td colspan="4">総合計（税別）</td>
+              <td class="num">¥6,200,000</td>
+              <td class="num">—</td>
             </tr>
           </tbody>
         </table>
